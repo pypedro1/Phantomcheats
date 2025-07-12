@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Store - Cheat Indetectável para Valorant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6f4a6d2d4f.js" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blood: '#FF0A0A',
+                        dark: '#0A0000',
+                        charcoal: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulse-glow 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glitch': 'glitch 2s infinite',
+                        'blink': 'blink 1s infinite'
+                    },
+                    keyframes: {
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '0.9', filter: 'drop-shadow(0 0 4px #FF0A0A)' },
+                            '50%': { opacity: '1', filter: 'drop-shadow(0 0 12px #FF0A0A)' }
+                        },
+                        'glitch': {
+                            '0%': { transform: 'translate(0)' },
+                            '20%': { transform: 'translate(-3px, 3px)' },
+                            '40%': { transform: 'translate(-3px, -3px)' },
+                            '60%': { transform: 'translate(3px, 3px)' },
+                            '80%': { transform: 'translate(3px, -3px)' },
+                            '100%': { transform: 'translate(0)' }
+                        },
+                        'blink': {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.2' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .blood-glow {
+            text-shadow: 0 0 10px rgba(255, 10, 10, 0.7);
+        }
+        
+        .blood-border {
+            border: 2px solid #FF0A0A;
+            box-shadow: 0 0 15px rgba(255, 10, 10, 0.5);
+        }
+        
+        .fire-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a0000 30%, #4a0000 70%, #ff0a0a 100%);
+        }
+        
+        .matrix-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff0a0a' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .pulse-button {
+            animation: pulse-glow 1.5s infinite;
+        }
+        
+        .glitch-effect {
+            animation: glitch 2s infinite;
+        }
+        
+        .skull-icon {
+            position: relative;
+        }
+        
+        .skull-icon::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #FF0A0A;
+            opacity: 0.4;
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(255, 10, 10, 0.25);
+        }
+        
+        .plan-card:hover {
+            outline: 2px solid #FF0A0A;
+            outline-offset: 4px;
+            transition: all 0.3s;
+        }
+        
+        .active-plan {
+            outline: 3px solid #FF0A0A;
+            outline-offset: 4px;
+            transform: scale(1.03);
+        }
+        
+        .crypto-icon {
+            transition: all 0.3s;
+        }
+        
+        .crypto-icon:hover {
+            transform: translateY(-3px);
+            filter: drop-shadow(0 0 8px #FF0A0A);
+        }
+        
+        .flashing {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes falling {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0.7; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0.5rem;
+            }
+            
+            .font-orbitron {
+                font-size: 1.5rem;
+            }
+            
+            #features .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            #pricing .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero button {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+        
+        .code-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Particles Canvas -->
+    <canvas id="particleCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+    
+        <!-- Header -->
+        <header class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-sm py-3 px-4 border-b border-blood">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center">
+                    <h1 class="font-orbitron text-blood text-2xl tracking-wider relative">
+                        <span class="relative z-10">Phantom</span>
+                        <span class="font-bold relative z-10">Store</span>
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-blood animate-pulse"></span>
+                    </h1>
+                </div>
+                
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8 font-rajdhani font-bold text-lg">
+                        <li><a href="#features" class="hover:text-blood transition"></a></li>
+                        <li><a href="#testimonials" class="hover:text-blood transition"></a></li>
+                        <li><a href="#pricing" class="hover:text-blood transition"></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="flex items-center">
+                    <div class="bg-blood px-3 py-1 rounded mr-4 font-rajdhani font-bold text-sm">
+                        <span class="flashing">●</span> ONLINE
+                    </div>
+                    <button id="ctaHeader" class="pulse-button bg-blood text-black font-bold py-2 px-6 rounded">
+                        TORNE-SE IMORTAL
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/70 z-10"></div>
+            <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover z-0">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-headshot-in-a-fps-game-43772-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <div class="relative z-20 text-center px-4">
+                <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6 blood-glow">
+                    <span class="block glitch-effect">Lidere o Ranking</span>
+                    <span class="block mt-2 text-blood">CONOSCO</span>
+                </h1>
+                
+                <p class="font-rajdhani text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
+                    <span class="inline-block border-b-2 border-blood px-2 pb-1">Sistema Eclipse v5.2: 11 meses indetectável pela Vanguard</span>
+                </p>
+                
+                <button id="mainCta" class="pulse-button bg-blood text-black text-xl font-bold py-4 px-12 rounded-lg transform transition hover:scale-105">
+                    TORNE-SE IMORTAL <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                
+                <div class="mt-12 bg-black/70 p-4 rounded-lg border border-blood inline-block">
+                    <p class="font-rajdhani font-bold flex items-center">
+                        <span class="text-blood mr-2"><i class="fas fa-exclamation-circle"></i> URGENTE:</span> 
+                        <span class="timer" id="licenseTimer">Últimas 4 licenças disponíveis para sua região</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 px-4 matrix-bg">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-orbitron text-4xl md:text-5xl blood-glow mb-4">POR DENTRO DA BALA</h2>
+                    <p class="font-rajdhani text-xl max-w-3xl mx-auto">Tecnologia de ponta que redefine o impossível no Valorant</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature 1: Aimbot -->
+                    <div class="feature-card bg-charcoal p-6 rounded-xl border border-blood/30 transition-all hover:border-blood">
+                        <div class="text-center mb-4">
+                            <div class="inline-block bg-black p-4 rounded-full mb-3">
+                                <i class="fas fa-crosshairs text-blood text-3xl"></i>
+                            </div>
+                            <h3 class="font-orbitron text-xl blood-glow mb-2">AIMBOT</h3>
+                        </div>
+                        <p class="font-rajdhani text-center">Ative o modo DEUS - Alcance perfeito até em movimento com ajustes milimétricos</p>
+                    </div>
+                    
+                    <!-- Feature 2: ESP -->
+                    <div class="feature-card bg-charcoal p-6 rounded-xl border border-blood/30 transition-all hover:border-blood">
+                        <div class="text-center mb-4">
+                            <div class="inline-block bg-black p-4 rounded-full mb-3">
+                                <i class="fas fa-eye text-blood text-3xl"></i>
+                            </div>
+                            <h3 class="font-orbitron text-xl blood-glow mb-2">ESP</h3>
+                        </div>
+                        <p class="font-rajdhani text-center">Veja através das paredes como raio-X com cores totalmente customizáveis</p>
+                    </div>
+                    
+                    <!-- Feature 3: Rage Mode -->
+                    <div class="feature-card bg-charcoal p-6 rounded-xl border border-blood/30 transition-all hover:border-blood">
+                        <div class="text-center mb-4">
+                            <div class="inline-block bg-black p-4 rounded-full mb-3">
+                                <i class="fas fa-angry text-blood text-3xl"></i>
+                            </div>
+                            <h3 class="font-orbitron text-xl blood-glow mb-2">RAGE MODE</h3>
+                        </div>
+                        <p class="font-rajdhani text-center">100% HS rate - Ative instantaneamente quando levar hate ou estiver perdendo</p>
+                    </div>
+                    
+                    <!-- Feature 4: Closet Cheat -->
+                    <div class="feature-card bg-charcoal p-6 rounded-xl border border-blood/30 transition-all hover:border-blood">
+                        <div class="text-center mb-4">
+                            <div class="inline-block bg-black p-4 rounded-full mb-3">
+                                <i class="fas fa-ghost text-blood text-3xl"></i>
+                            </div>
+                            <h3 class="font-orbitron text-xl blood-glow mb-2">CLOSET CHEAT</h3>
+                        </div>
+                        <p class="font-rajdhani text-center">Invisível para gravações de terceiros e streams - Nunca deixe evidências</p>
+                    </div>
+                </div>
+                
+                <!-- Demo Area -->
+                <div class="mt-16 bg-black/70 rounded-xl overflow-hidden border border-blood relative">
+                    <div class="code-overlay"></div>
+                    <div class="p-4 bg-blood text-black">
+                        <div class="flex items-center">
+                            <div class="flex">
+                                <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <div class="ml-4 font-rajdhani font-bold">Phantom_demo.exe</div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-8">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-6 md:mb-0">
+                                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Phantom Demo" class="rounded-xl shadow-lg">
+                            </div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="bg-black p-4 rounded-lg mb-4">
+                                    <code class="text-blood font-mono block overflow-x-auto">
+<span class="text-green-400">> Phantom_system --activate --eclipse_v5.2</span><br>
+<span class="text-gray-400">[SYSTEM] Eclipse v5.2 initialized</span><br>
+<span class="text-gray-400">[AI] Neural network aim calibration: COMPLETE</span><br>
+<span class="text-gray-400">[ESP] Wall penetration: ACTIVE</span><br>
+<span class="text-green-400">> security_bypass --vanguard --level 9</span><br>
+<span class="text-gray-400">[SECURITY] Vanguard bypassed (layer 9)</span><br>
+<span class="text-yellow-400">[WARNING] Anti-cheat detection: 0%</span><br>
+<span class="text-green-400">> execute --rage_mode --headshot_rate 100</span><br>
+<span class="text-gray-400">[RAGE] Headshot matrix activated</span><br>
+<span class="text-green-400">> STATUS: UNDETECTABLE</span>
+                                    </code>
+                                </div>
+                                <p class="font-rajdhani text-center">
+                                    Sistema operando com 0% de detecção desde 11/2022
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 px-4 fire-gradient">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-orbitron text-4xl md:text-5xl blood-glow mb-4">VÍTIMAS</h2>
+                    <p class="font-rajdhani text-xl max-w-3xl mx-auto">O que os usuários do Phantom estão dizendo</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-charcoal p-6 rounded-xl border border-blood">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-black p-3 rounded-full mr-4">
+                                <i class="fas fa-skull text-blood text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-orbitron blood-glow">Radiante em 72h</h4>
+                                <p class="font-rajdhani text-blood text-sm">Alcance comprovado</p>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Radiant Rank" class="rounded-lg w-full">
+                        <div class="mt-4 flex items-center">
+                            <div class="bg-blood w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-black"></i>
+                            </div>
+                            <p class="font-rajdhani text-sm">Rank Radiante alcançado em 72h com Phantom Hacks</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-charcoal p-6 rounded-xl border border-blood mb-6">
+                            <div class="flex">
+                                <div class="text-blood text-2xl mr-4">"</div>
+                                <div>
+                                    <p class="font-rajdhani mb-4">Banido? Jamais. Uso desde o Ep7 e ainda pulo ranks como se não houvesse amanhã. Quando comecei era Ferro 3, hoje sou Radiante com apenas 2h de jogo por dia.</p>
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-gray-700 mr-3"></div>
+                                        <div>
+                                            <p class="font-bold"></p>
+                                            <p class="text-blood text-sm">Radiante | 5x </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-charcoal p-6 rounded-xl border border-blood">
+                            <div class="flex">
+                                <div class="text-blood text-2xl mr-4">"</div>
+                                <div>
+                                    <p class="font-rajdhani mb-4">O suporte 24h me salvou quando atualizou o Vanguard. Em menos de 15 minutos me enviaram o novo HWID spoofer e pude voltar a jogar. Vale cada centavo!</p>
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-gray-700 mr-3"></div>
+                                        <div>
+                                            <p class="font-bold"></p>
+                                            <p class="text-blood text-sm">Immortal 3 | Streamer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Guarantee -->
+                <div class="bg-black text-center p-8 rounded-xl border-2 border-blood max-w-3xl mx-auto">
+                    <div class="inline-block bg-blood p-4 rounded-full mb-4">
+                        <i class="fas fa-shield-alt text-black text-3xl"></i>
+                    </div>
+                    <h3 class="font-orbitron text-2xl blood-glow mb-2">GARANTIA DE SANGUE</h3>
+                    <p class="font-rajdhani text-xl">
+                        Banido? Receba novo HWID spoofer em 15 minutos ou <span class="text-blood font-bold">devolução total</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 px-4 bg-black">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-orbitron text-4xl md:text-5xl blood-glow mb-4">SELECIONE SEU ARSENAL</h2>
+                    <p class="font-rajdhani text-xl max-w-3xl mx-auto">Escolha seu nível de poder</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <!-- Basic Plan -->
+                    <div class="plan-card bg-charcoal p-8 rounded-xl transition-all">
+                        <h3 class="font-orbitron text-2xl text-center blood-glow mb-4">BASIC</h3>
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold">R$49,99</span>
+                            <span class="text-gray-400">/mês</span>
+                        </div>
+                        <ul class="font-rajdhani space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Aimbot com 8 níveis de ajuste
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                ESP completo com customização
+                            </li>
+                            <li class="flex items-center text-gray-500">
+                                <i class="fas fa-times-circle mr-2"></i>
+                                Rage Mode desbloqueado
+                            </li>
+                            <li class="flex items-center text-gray-500">
+                                <i class="fas fa-times-circle mr-2"></i>
+                                Closet Cheat
+                            </li>
+                            <li class="flex items-center text-gray-500">
+                                <i class="fas fa-times-circle mr-2"></i>
+                                HWID Spoofer
+                            </li>
+                        </ul>
+                        <button class="w-full bg-gray-700 py-3 rounded-lg font-rajdhani font-bold hover:bg-gray-600 transition">
+                            SELECIONAR
+                        </button>
+                    </div>
+                    
+                    <!-- Vanguard Killer -->
+                    <div class="plan-card bg-charcoal p-8 rounded-xl border border-blood transition-all active-plan">
+                        <div class="text-center mb-4">
+                            <span class="bg-blood text-black py-1 px-3 rounded-full font-rajdhani text-sm font-bold">
+                                MAIS POPULAR
+                            </span>
+                        </div>
+                        <h3 class="font-orbitron text-2xl text-center blood-glow mb-4">VANGUARD KILLER</h3>
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold">R$119,99</span>
+                            <span class="text-gray-400">/mês</span>
+                        </div>
+                        <ul class="font-rajdhani space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Tudo do plano Basic
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Rage Mode (100% HS)
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Closet Cheat
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                HWID Spoofer
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Suporte VIP 24/7
+                            </li>
+                        </ul>
+                        <button class="w-full pulse-button bg-blood text-black py-3 rounded-lg font-rajdhani font-bold hover:opacity-90 transition">
+                            TORNE-SE IMORTAL
+                        </button>
+                    </div>
+                    
+                    <!-- God Mode -->
+                    <div class="plan-card bg-charcoal p-8 rounded-xl transition-all">
+                        <h3 class="font-orbitron text-2xl text-center blood-glow mb-4">GOD MODE</h3>
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold">R$199,99</span>
+                            <span class="text-gray-400">/mês</span>
+                        </div>
+                        <ul class="font-rajdhani space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Tudo do Vanguard Killer
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Configs de pro players
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Sistema anti-report
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Atualizações prioritárias
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-blood mr-2"></i>
+                                Conta premium smurf
+                            </li>
+                        </ul>
+                        <button class="w-full bg-gray-700 py-3 rounded-lg font-rajdhani font-bold hover:bg-gray-600 transition">
+                            SELECIONAR
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- FAQ -->
+                <div class="mt-20 max-w-3xl mx-auto">
+                    <h3 class="font-orbitron text-3xl blood-glow text-center mb-8">FAQ OFICIAL</h3>
+                    
+                    <div class="bg-charcoal rounded-xl overflow-hidden">
+                        <div class="border-b border-blood/30">
+                            <button class="faq-question w-full text-left p-6 font-rajdhani font-bold text-lg flex justify-between items-center">
+                                É detectável pelo Vanguard?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-6 hidden">
+                                <p class="mb-4">Não. Nosso Sistema Eclipse opera em camada kernel nível 0, tornando-o invisível para qualquer anti-cheat do mercado.</p>
+                                <p>Última detecção: <span class="text-blood">Nunca</span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="border-b border-blood/30">
+                            <button class="faq-question w-full text-left p-6 font-rajdhani font-bold text-lg flex justify-between items-center">
+                                É antiético? Vou ser banido?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-6 hidden">
+                                <p class="mb-4">Antiético? Sim. Banido? Improvável.</p>
+                                <p>Com nosso HWID Spoofer e tecnologia de camuflagem, sua conta permanece segura. Caso raro de banimento, reembolsamos em 15 minutos.</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <button class="faq-question w-full text-left p-6 font-rajdhani font-bold text-lg flex justify-between items-center">
+                                Quero dominar o jogo. Por onde começo?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-6 hidden">
+                                <p>Clique no botão abaixo e torne-se imortal em 3 minutos:</p>
+                                <div class="mt-4">
+                                    <button class="pulse-button bg-blood text-black font-bold py-3 px-8 rounded-lg">
+                                        DOMINE AGORA <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-10 px-4 border-t border-blood/20">
+            <div class="container mx-auto text-center">
+                <div class="flex justify-center mb-6">
+                    <div class="skull-icon">
+                        <i class="fas fa-skull text-blood text-3xl"></i>
+                    </div>
+                </div>
+                <p class="font-rajdhani text-gray-400 mb-4">
+                    © 2020 Phantom Store. Este produto não é afiliado à Riot Games ou Valorant.
+                </p>
+                <p class="font-rajdhani text-sm text-gray-600">
+                    Usar cheats pode violar os Termos de Serviço do jogo. Use por sua conta e risco.
+                </p>
+            </div>
+        </footer>
+        
+        
+    
+    <!-- Self Destruct Modal -->
+    <div id="selfDestructModal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center hidden">
+        <div class="bg-charcoal p-8 rounded-xl max-w-lg w-full mx-4 text-center border-4 border-blood">
+            <div class="text-blood text-6xl mb-4">
+                <i class="fas fa-radiation"></i>
+            </div>
+            <h3 class="font-orbitron text-3xl blood-glow mb-4">DESTRUIÇÃO AUTORIZADA</h3>
+            <p class="font-rajdhani text-xl mb-6">
+                Área restrita detectada. Ativando protocolo de auto-destruição em:
+            </p>
+            <div id="destructTimer" class="text-5xl font-bold blood-glow mb-6">5</div>
+            <p class="font-rajdhani text-blood">
+                <i class="fas fa-exclamation-triangle mr-2"></i> Todos os dados serão eliminados
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Mobile Detection - No longer hiding content
+        
+        // Particle System
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        let particles = [];
+        const particleCount = 150;
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speed = Math.random() * 1 + 0.5;
+                this.angle = Math.random() * 360;
+                this.rotation = Math.random() * 360;
+                this.color = `rgba(255, 10, 10, ${Math.random() * 0.4 + 0.1})`;
+            }
+            
+            update() {
+                this.y += this.speed;
+                this.rotation += 0.5;
+                
+                if(this.y > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.moveTo(0, 0 - this.size);
+                for (let i = 0; i < 5; i++) {
+                    ctx.rotate(Math.PI / 2.5);
+                    ctx.lineTo(0, 0 - (this.size * 0.5));
+                    ctx.rotate(Math.PI / 2.5);
+                    ctx.lineTo(0, 0 - this.size);
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+        
+        function createParticles() {
+            for(let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        createParticles();
+        animateParticles();
+        
+        // Timer for license urgency
+        function updateLicenseTimer() {
+            const timerElement = document.getElementById('licenseTimer');
+            const licenses = Math.max(1, Math.floor(Math.random() * 4));
+            timerElement.innerHTML = `Últimas ${licenses} licenças disponíveis para sua região`;
+        }
+        
+        setInterval(updateLicenseTimer, 5000);
+        updateLicenseTimer();
+        
+        // Recent purchase popup
+        function showRecentPurchase() {
+            const popup = document.getElementById('recentPurchasePopup');
+            popup.classList.remove('translate-y-20', 'opacity-0');
+            popup.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                popup.classList.add('translate-y-20', 'opacity-0');
+            }, 5000);
+        }
+        
+        // Show popup on load and every 60 seconds
+        setTimeout(showRecentPurchase, 3000);
+        setInterval(showRecentPurchase, 60000);
+        
+        // Plan selection
+        const planCards = document.querySelectorAll('.plan-card');
+        planCards.forEach(card => {
+            card.addEventListener('click', function() {
+                planCards.forEach(c => c.classList.remove('active-plan'));
+                this.classList.add('active-plan');
+                
+                const button = this.querySelector('button');
+                if(button) {
+                    button.classList.add('pulse-button');
+                    button.classList.add('bg-blood');
+                    button.classList.remove('bg-gray-700');
+                    button.innerHTML = 'COMPRAR AGORA <i class="fas fa-arrow-right ml-2"></i>';
+                }
+            });
+        });
+        
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isOpen = answer.classList.contains('hidden');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+                
+                // Toggle clicked answer
+                if(isOpen) {
+                    answer.classList.remove('hidden');
+                }
+                
+                // Rotate chevron
+                const icon = this.querySelector('i');
+                if(isOpen) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Self-destruct effect for blocked regions (simulated)
+        function simulateSelfDestruct() {
+            const modal = document.getElementById('selfDestructModal');
+            modal.classList.remove('hidden');
+            
+            let count = 5;
+            const timerElement = document.getElementById('destructTimer');
+            
+            const countdown = setInterval(() => {
+                count--;
+                timerElement.textContent = count;
+                
+                if(count <= 0) {
+                    clearInterval(countdown);
+                    document.body.innerHTML = `
+                    <div class="fixed inset-0 bg-black flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-blood text-6xl mb-6">
+                                <i class="fas fa-skull"></i>
+                            </div>
+                            <h3 class="font-orbitron text-4xl blood-glow mb-4">SISTEMA DESTRUÍDO</h3>
+                            <p class="font-rajdhani text-xl">Acesso negado em sua região</p>
+                        </div>
+                    </div>
+                    `;
+                }
+            }, 1000);
+        }
+        
+        // Simulate blocked region for demo purposes
+        document.getElementById('ctaHeader').addEventListener('click', function() {
+            // 20% chance to trigger self-destruct
+            if(Math.random() < 0.2) {
+                simulateSelfDestruct();
+            } else {
+                document.querySelector('#pricing').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        
+        document.getElementById('mainCta').addEventListener('click', function() {
+            document.querySelector('#pricing').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Update canvas on resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
